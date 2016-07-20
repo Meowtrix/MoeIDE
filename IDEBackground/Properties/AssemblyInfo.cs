@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("IDEBackground")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Meowtrix")]
 [assembly: AssemblyProduct("IDEBackground")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
