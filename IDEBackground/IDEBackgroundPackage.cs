@@ -1,14 +1,11 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 
 namespace Meowtrix.IDEBackground
 {
@@ -31,25 +28,15 @@ namespace Meowtrix.IDEBackground
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
-    [Guid(IDEBackgroundPackage.PackageGuidString)]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [Guid(PackageGuidString)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution)]
+    [ProvideAutoLoad(UIContextGuids.SolutionExists)]
     public sealed class IDEBackgroundPackage : Package
     {
         /// <summary>
         /// IDEBackgroundPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "396fe64e-807b-43f4-a39b-0d7122c48f1a";
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IDEBackgroundPackage"/> class.
-        /// </summary>
-        public IDEBackgroundPackage()
-        {
-            // Inside this method you can place any initialization code that does not require
-            // any Visual Studio service because at this point the package object is created but
-            // not sited yet inside Visual Studio environment. The place to do all the other
-            // initialization is the Initialize method.
-        }
 
         #region Package Members
 
@@ -60,6 +47,25 @@ namespace Meowtrix.IDEBackground
         protected override void Initialize()
         {
             base.Initialize();
+            Application.Current.MainWindow.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            var mainwindow = (Window)sender;
+            var imagesource = BitmapFrame.Create(new Uri(@"D:\WallPapers\aokana_misaki.png"), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            imagesource.Freeze();
+
+            var imagecontrol = new Image
+            {
+                Source = imagesource,
+                Stretch = Stretch.UniformToFill,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            Grid.SetRowSpan(imagecontrol, 4);
+            var rootgrid = (Grid)mainwindow.Template.FindName("RootGrid", mainwindow);
+            rootgrid.Children.Insert(0, imagecontrol);
         }
 
         #endregion
