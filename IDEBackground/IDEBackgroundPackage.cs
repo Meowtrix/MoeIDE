@@ -29,6 +29,7 @@ namespace Meowtrix.IDEBackground
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
+    [ProvideOptionPage(typeof(Settings), nameof(IDEBackground), "General", 0, 0, true)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [ProvideAutoLoad(UIContextGuids.SolutionExists)]
     public sealed class IDEBackgroundPackage : Package

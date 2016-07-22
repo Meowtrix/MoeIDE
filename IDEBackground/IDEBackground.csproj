@@ -54,6 +54,16 @@
   <ItemGroup>
     <Compile Include="IDEBackgroundPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
