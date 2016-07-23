@@ -52,6 +52,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="IDEBackgroundPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Page Include="SettingPage.xaml">
@@ -174,6 +176,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
