@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="IDEBackground.Meowtrix.6cc96744-e9d7-41c2-9972-c73563934023" Version="1.0" Language="en-US" Publisher="Meowtrix" />
-    <DisplayName>IDEBackground</DisplayName>
+    <Identity Id="MoeIDE.Meowtrix.6cc96744-e9d7-41c2-9972-c73563934023" Version="1.0" Language="en-US" Publisher="Meowtrix" />
+    <DisplayName>MoeIDE</DisplayName>
     <Description xml:space="preserve">Provide a  background image for the IDE.</Description>
   </Metadata>
   <Installation>

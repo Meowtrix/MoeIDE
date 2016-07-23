@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Meowtrix.IDEBackground
+namespace Meowtrix.MoeIDE
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -29,13 +29,13 @@ namespace Meowtrix.IDEBackground
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
-    [ProvideOptionPage(typeof(Settings), nameof(IDEBackground), "General", 0, 0, true)]
+    [ProvideOptionPage(typeof(Settings), nameof(MoeIDE), "General", 0, 0, true)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [ProvideAutoLoad(UIContextGuids.SolutionExists)]
-    public sealed class IDEBackgroundPackage : Package
+    public sealed class MoeIDEPackage : Package
     {
         /// <summary>
-        /// IDEBackgroundPackage GUID string.
+        /// MoeIDEPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "396fe64e-807b-43f4-a39b-0d7122c48f1a";
 

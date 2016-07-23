@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Microsoft.VisualStudio.Shell;
 
-namespace Meowtrix.IDEBackground
+namespace Meowtrix.MoeIDE
 {
     public sealed class Settings : UIElementDialogPage, INotifyPropertyChanged
     {

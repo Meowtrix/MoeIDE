@@ -6,21 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Meowtrix.IDEBackground
+namespace Meowtrix.MoeIDE
 {
-    internal static class ConfigurationManager
+    internal static class MoeIDEConfigurationManager
     {
-        private const string SectionName = "IDEBackground";
+        private const string SectionName = nameof(MoeIDE);
         private const string FileName = "user.config";
-        public static readonly Type sectionType = typeof(ConfigurationSection);
-        public static readonly string sectionFullName = typeof(ConfigurationSection).FullName;
+        public static readonly Type sectionType = typeof(MoeIDEConfigurationSection);
+        public static readonly string sectionFullName = typeof(MoeIDEConfigurationSection).FullName;
         private static Configuration config;
-        private static FileSystemWatcher watcher;
+        private static readonly FileSystemWatcher watcher;
         public static string SettingsFolder { get; }
-        public static ConfigurationSection Section { get; private set; }
-        static ConfigurationManager()
+        public static MoeIDEConfigurationSection Section { get; private set; }
+        static MoeIDEConfigurationManager()
         {
-            SettingsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Meowtrix", SectionName);
+            SettingsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), nameof(Meowtrix), SectionName);
             Directory.CreateDirectory(SettingsFolder);
             watcher = new FileSystemWatcher(SettingsFolder, FileName);
             watcher.Changed += ConfigureFileUpdated;
@@ -34,15 +34,15 @@ namespace Meowtrix.IDEBackground
         {
             try
             {
-                config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap
+                config = ConfigurationManager.OpenMappedExeConfiguration(new ExeConfigurationFileMap
                 {
-                    ExeConfigFilename = Path.Combine(SettingsFolder, "IDEBackground.config"),
+                    ExeConfigFilename = Path.Combine(SettingsFolder, "MoeIDE.config"),
                     RoamingUserConfigFilename = Path.Combine(SettingsFolder, FileName)
                 }, ConfigurationUserLevel.PerUserRoaming);
-                Section = config.Sections[sectionFullName] as ConfigurationSection;
+                Section = config.Sections[sectionFullName] as MoeIDEConfigurationSection;
                 if (Section == null)
                 {
-                    Section = new ConfigurationSection();
+                    Section = new MoeIDEConfigurationSection();
                 }
             }
             catch { }
