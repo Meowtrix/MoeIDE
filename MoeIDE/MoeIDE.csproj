@@ -52,6 +52,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\LocalizedDescriptionAttribute.cs" />
+    <Compile Include="ComponentModel\LocalizedCategoryAttribute.cs" />
+    <Compile Include="ComponentModel\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="MoeIDEPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Page Include="SettingPage.xaml">

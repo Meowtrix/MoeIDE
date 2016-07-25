@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Meowtrix.MoeIDE.ComponentModel;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -38,6 +40,14 @@ namespace Meowtrix.MoeIDE
         /// MoeIDEPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "396fe64e-807b-43f4-a39b-0d7122c48f1a";
+
+        static MoeIDEPackage()
+        {
+            var resman = new ResourceManager("VSPackage", typeof(MoeIDEPackage).Assembly);
+            LocalizedCategoryAttribute.resources = resman;
+            LocalizedDisplayNameAttribute.resources = resman;
+            LocalizedDescriptionAttribute.resources = resman;
+        }
 
         #region Package Members
 
