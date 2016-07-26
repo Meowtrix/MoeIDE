@@ -10,5 +10,12 @@ namespace Meowtrix.MoeIDE
     {
         [LocalizedCategory("201"), LocalizedDescription("203"), LocalizedDisplayName("202"), Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
         public string MainBackgroundFilename { get; set; }
+        protected override void OnApply(PageApplyEventArgs e)
+        {
+            if (e.ApplyBehavior == ApplyKind.Apply)
+            {
+                SettingsManager.SaveSettings(new MoeIDE.SettingsModel(this));
+            }
+        }
     }
 }

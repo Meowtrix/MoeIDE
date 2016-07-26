@@ -59,6 +59,7 @@ namespace Meowtrix.MoeIDE
         {
             base.Initialize();
             Application.Current.MainWindow.Loaded += MainWindow_Loaded;
+            SettingsManager.LoadSettings();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
