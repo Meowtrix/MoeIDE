@@ -8,7 +8,7 @@ namespace Meowtrix.MoeIDE
 
     internal static class SettingsManager
     {
-        private static SettingsModel oldSettings;
+        public static SettingsModel CurrentSettings { get; private set; } = new SettingsModel();
         public static event SettingsUpdatedHandler SettingsUpdated;
         private static string configFilename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Meowtrix", "MoeIDE", "userconfig.xml");
         public static void LoadSettings()
@@ -19,7 +19,8 @@ namespace Meowtrix.MoeIDE
                 var serialzer = new XmlSerializer(typeof(SettingsModel));
                 using (var stream = File.OpenRead(configFilename))
                     settings = (SettingsModel)serialzer.Deserialize(stream);
-                SettingsUpdated(oldSettings, settings);
+                SettingsUpdated(CurrentSettings, settings);
+                CurrentSettings = settings;
             }
             catch
             {
@@ -34,8 +35,8 @@ namespace Meowtrix.MoeIDE
                 Directory.CreateDirectory(Path.GetDirectoryName(configFilename));
                 using (var stream = File.Create(configFilename))
                     serialzer.Serialize(stream, settings);
-                SettingsUpdated(oldSettings, settings);
-                oldSettings = settings;
+                SettingsUpdated(CurrentSettings, settings);
+                CurrentSettings = settings;
             }
             catch
             {

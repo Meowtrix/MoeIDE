@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing.Design;
 using System.Windows;
 using System.Windows.Forms.Design;
@@ -10,18 +11,38 @@ namespace Meowtrix.MoeIDE
 {
     public sealed class Settings : DialogPage
     {
+        private bool initialized;
         [LocalizedCategory("201"), LocalizedDescription("203"), LocalizedDisplayName("202"), Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
         public string MainBackgroundFilename { get; set; }
         [LocalizedCategory("201"), LocalizedDescription("204"), DisplayName(nameof(Stretch)), DefaultValue(Stretch.UniformToFill)]
-        public Stretch MainBackgroundStretch { get; set; } = Stretch.UniformToFill;
+        public Stretch MainBackgroundStretch { get; set; }
         [LocalizedCategory("201"), LocalizedDescription("205"), DisplayName(nameof(HorizontalAlignment)), DefaultValue(HorizontalAlignment.Center)]
-        public HorizontalAlignment MainBackgroundHorizontalAlignment { get; set; } = HorizontalAlignment.Center;
+        public HorizontalAlignment MainBackgroundHorizontalAlignment { get; set; }
         [LocalizedCategory("201"), LocalizedDescription("206"), DisplayName(nameof(VerticalAlignment)), DefaultValue(VerticalAlignment.Center)]
-        public VerticalAlignment MainBackgroundVerticalAlignment { get; set; } = VerticalAlignment.Center;
+        public VerticalAlignment MainBackgroundVerticalAlignment { get; set; }
+        protected override void OnActivate(CancelEventArgs e)
+        {
+            if (!initialized)
+            {
+                var settings = SettingsManager.CurrentSettings;
+                MainBackgroundFilename = settings.MainBackground.Filename;
+                MainBackgroundStretch = settings.MainBackground.Stretch;
+                MainBackgroundHorizontalAlignment = settings.MainBackground.HorizontalAlignment;
+                MainBackgroundVerticalAlignment = settings.MainBackground.VerticalAlignment;
+                initialized = true;
+            }
+            base.OnActivate(e);
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            initialized = false;
+            base.OnClosed(e);
+        }
         protected override void OnApply(PageApplyEventArgs e)
         {
             if (e.ApplyBehavior == ApplyKind.Apply)
             {
+                initialized = true;
                 SettingsManager.SaveSettings(new MoeIDE.SettingsModel(this));
             }
         }
