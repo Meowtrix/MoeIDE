@@ -132,4 +132,13 @@
   <data name="203" xml:space="preserve">
     <value>选择用作背景的图像。</value>
   </data>
+  <data name="204" xml:space="preserve">
+    <value>设置图片的拉伸方式。</value>
+  </data>
+  <data name="205" xml:space="preserve">
+    <value>设置图片的水平对齐方式。</value>
+  </data>
+  <data name="206" xml:space="preserve">
+    <value>设置图片的垂直对齐方式。</value>
+  </data>
 </root>

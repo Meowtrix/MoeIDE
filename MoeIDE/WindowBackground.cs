@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Meowtrix.MoeIDE
@@ -18,12 +17,12 @@ namespace Meowtrix.MoeIDE
 
         private void SettingsUpdated(SettingsModel oldSettings, SettingsModel newSettings)
         {
-            var imagesource = BitmapFrame.Create(new Uri(newSettings.MainBackgroundFilename), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            var imagesource = BitmapFrame.Create(new Uri(newSettings.MainBackground.Filename), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             imagesource.Freeze();
             imagecontrol.Source = imagesource;
-            imagecontrol.Stretch = Stretch.UniformToFill;
-            imagecontrol.HorizontalAlignment = HorizontalAlignment.Center;
-            imagecontrol.VerticalAlignment = VerticalAlignment.Center;
+            imagecontrol.Stretch = newSettings.MainBackground.Stretch;
+            imagecontrol.HorizontalAlignment = newSettings.MainBackground.HorizontalAlignment;
+            imagecontrol.VerticalAlignment = newSettings.MainBackground.VerticalAlignment;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

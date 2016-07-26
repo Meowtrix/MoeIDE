@@ -121,7 +121,7 @@
     <value>MoeIDE</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>Provide a  background image for the IDE.</value>
+    <value>Provide a background image for the IDE.</value>
   </data>
   <data name="201" xml:space="preserve">
     <value>Main Background</value>
@@ -135,5 +135,14 @@
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\MoeIDEPackage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="204" xml:space="preserve">
+    <value>Setting how the image stretchs.</value>
+  </data>
+  <data name="205" xml:space="preserve">
+    <value>Setting how the image aligns horizontal.</value>
+  </data>
+  <data name="206" xml:space="preserve">
+    <value>Setting how the image aligns vertical.</value>
   </data>
 </root>
