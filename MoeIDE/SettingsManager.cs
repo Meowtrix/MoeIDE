@@ -31,7 +31,8 @@ namespace Meowtrix.MoeIDE
             try
             {
                 var serialzer = new XmlSerializer(typeof(SettingsModel));
-                using (var stream = File.OpenWrite(configFilename))
+                Directory.CreateDirectory(Path.GetDirectoryName(configFilename));
+                using (var stream = File.Create(configFilename))
                     serialzer.Serialize(stream, settings);
                 SettingsUpdated(oldSettings, settings);
                 oldSettings = settings;

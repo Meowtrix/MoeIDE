@@ -55,6 +55,7 @@
     <Compile Include="ComponentModel\LocalizedDescriptionAttribute.cs" />
     <Compile Include="ComponentModel\LocalizedCategoryAttribute.cs" />
     <Compile Include="ComponentModel\LocalizedDisplayNameAttribute.cs" />
+    <Compile Include="WindowBackground.cs" />
     <Compile Include="MoeIDEPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsManager.cs" />

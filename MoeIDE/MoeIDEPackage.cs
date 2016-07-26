@@ -51,6 +51,7 @@ namespace Meowtrix.MoeIDE
 
         #region Package Members
 
+        private WindowBackground mainBackground;
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
@@ -58,26 +59,8 @@ namespace Meowtrix.MoeIDE
         protected override void Initialize()
         {
             base.Initialize();
-            Application.Current.MainWindow.Loaded += MainWindow_Loaded;
+            mainBackground = new WindowBackground(Application.Current.MainWindow);
             SettingsManager.LoadSettings();
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            var mainwindow = (Window)sender;
-            var imagesource = BitmapFrame.Create(new Uri(@"D:\WallPapers\aokana_misaki.png"), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            imagesource.Freeze();
-
-            var imagecontrol = new Image
-            {
-                Source = imagesource,
-                Stretch = Stretch.UniformToFill,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Grid.SetRowSpan(imagecontrol, 4);
-            var rootgrid = (Grid)mainwindow.Template.FindName("RootGrid", mainwindow);
-            rootgrid.Children.Insert(0, imagecontrol);
         }
 
         #endregion
