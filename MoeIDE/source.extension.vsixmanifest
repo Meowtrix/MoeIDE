@@ -5,6 +5,9 @@
     <DisplayName>MoeIDE</DisplayName>
     <Description xml:space="preserve">Provide a  background image for the IDE.</Description>
     <MoreInfo>https://github.com/Meowtrix/MoeIDE</MoreInfo>
+    <Icon>Resources\MoeIDE.ico</Icon>
+    <PreviewImage>Resources\preview.png</PreviewImage>
+    <Tags>background image transparent 痛IDE拡張</Tags>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />

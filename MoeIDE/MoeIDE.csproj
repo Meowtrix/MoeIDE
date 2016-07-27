@@ -76,10 +76,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\MoeIDE.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\preview.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="zh-Hans\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\MoeIDEPackage.ico" />
     <Content Include="Themes\Blue.pkgdef">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
