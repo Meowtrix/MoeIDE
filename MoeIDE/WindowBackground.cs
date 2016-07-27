@@ -17,12 +17,19 @@ namespace Meowtrix.MoeIDE
 
         private void SettingsUpdated(SettingsModel oldSettings, SettingsModel newSettings)
         {
-            var imagesource = BitmapFrame.Create(new Uri(newSettings.MainBackground.Filename), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            imagesource.Freeze();
-            imagecontrol.Source = imagesource;
-            imagecontrol.Stretch = newSettings.MainBackground.Stretch;
-            imagecontrol.HorizontalAlignment = newSettings.MainBackground.HorizontalAlignment;
-            imagecontrol.VerticalAlignment = newSettings.MainBackground.VerticalAlignment;
+            try
+            {
+                var imagesource = BitmapFrame.Create(new Uri(newSettings.MainBackground.Filename), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                imagesource.Freeze();
+                imagecontrol.Source = imagesource;
+                imagecontrol.Stretch = newSettings.MainBackground.Stretch;
+                imagecontrol.HorizontalAlignment = newSettings.MainBackground.HorizontalAlignment;
+                imagecontrol.VerticalAlignment = newSettings.MainBackground.VerticalAlignment;
+            }
+            catch
+            {
+                imagecontrol.Source = null;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
