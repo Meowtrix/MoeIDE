@@ -21,8 +21,8 @@ namespace Meowtrix.MoeIDE
         /// after the selection layer in the Z-order
         /// </summary>
         [Export(typeof(AdornmentLayerDefinition))]
-        [Name("EditorBackground")]
-        [Order(After = PredefinedAdornmentLayers.Caret)]
+        [Name("MoeIDEEditorBackground")]
+        [Order(Before = PredefinedAdornmentLayers.Text)]
         private AdornmentLayerDefinition editorAdornmentLayer;
 
 #pragma warning restore 649, 169

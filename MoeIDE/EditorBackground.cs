@@ -30,10 +30,8 @@ namespace Meowtrix.MoeIDE
         {
             this.view = view;
             control = (ContentControl)view;
-            view.Background = Brushes.Transparent;
             VSColorTheme.ThemeChanged += _ => control.Dispatcher.Invoke(MakeBackgroundTransparent, DispatcherPriority.Render);
             control.Loaded += TextView_Loaded;
-            control.Unloaded += TextView_Unloaded;
         }
 
         private void TextView_Loaded(object sender, RoutedEventArgs e)
@@ -44,16 +42,9 @@ namespace Meowtrix.MoeIDE
             MakeBackgroundTransparent();
         }
 
-        private void TextView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            control.Unloaded -= TextView_Unloaded;
-            control.Loaded -= TextView_Loaded;
-        }
-
         private void MakeBackgroundTransparent()
         {
-            view.Background = Brushes.Transparent;
-            viewStack.Background = Brushes.Transparent;
+            viewStack.Background = new VisualBrush(parentGrid);
             leftMargin.Background = Brushes.Transparent;
             parentGrid.ClearValue(Panel.BackgroundProperty);
         }
