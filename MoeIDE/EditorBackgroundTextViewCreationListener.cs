@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media;
-using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
 
@@ -26,9 +24,6 @@ namespace Meowtrix.MoeIDE
         [Name("EditorBackground")]
         [Order(After = PredefinedAdornmentLayers.Caret)]
         private AdornmentLayerDefinition editorAdornmentLayer;
-
-        [Import]
-        IEditorFormatMapService EditorFormatMapService;
 
 #pragma warning restore 649, 169
 

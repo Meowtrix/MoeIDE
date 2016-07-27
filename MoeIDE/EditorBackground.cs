@@ -1,7 +1,8 @@
-﻿using System;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Text.Editor;
 
 namespace Meowtrix.MoeIDE
@@ -30,12 +31,12 @@ namespace Meowtrix.MoeIDE
             this.view = view;
             control = (ContentControl)view;
             view.Background = Brushes.Transparent;
-            view.BackgroundBrushChanged += TextView_BackgroundBrushChanged;
-            view.Closed += TextView_Closed;
+            VSColorTheme.ThemeChanged += _ => control.Dispatcher.Invoke(MakeBackgroundTransparent, DispatcherPriority.Render);
             control.Loaded += TextView_Loaded;
+            control.Unloaded += TextView_Unloaded;
         }
 
-        private void TextView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void TextView_Loaded(object sender, RoutedEventArgs e)
         {
             if (parentGrid == null) parentGrid = (Grid)control.Parent;
             if (viewStack == null) viewStack = (Canvas)control.Content;
@@ -43,18 +44,10 @@ namespace Meowtrix.MoeIDE
             MakeBackgroundTransparent();
         }
 
-        private void TextView_Closed(object sender, EventArgs e)
+        private void TextView_Unloaded(object sender, RoutedEventArgs e)
         {
-            view.Closed -= TextView_Closed;
-            view.BackgroundBrushChanged -= TextView_BackgroundBrushChanged;
-        }
-
-        private void TextView_BackgroundBrushChanged(object sender, BackgroundBrushChangedEventArgs e)
-        {
-            control.Dispatcher.Invoke(() =>
-            {
-                while (parentGrid.Background != null) MakeBackgroundTransparent();
-            }, DispatcherPriority.Render);
+            control.Unloaded -= TextView_Unloaded;
+            control.Loaded -= TextView_Loaded;
         }
 
         private void MakeBackgroundTransparent()
