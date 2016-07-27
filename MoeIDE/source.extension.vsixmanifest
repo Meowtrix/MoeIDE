@@ -4,6 +4,7 @@
     <Identity Id="MoeIDE.Meowtrix.6cc96744-e9d7-41c2-9972-c73563934023" Version="1.0" Language="en-US" Publisher="Meowtrix" />
     <DisplayName>MoeIDE</DisplayName>
     <Description xml:space="preserve">Provide a  background image for the IDE.</Description>
+    <MoreInfo>https://github.com/Meowtrix/MoeIDE</MoreInfo>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />

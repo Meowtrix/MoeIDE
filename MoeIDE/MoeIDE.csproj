@@ -76,6 +76,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="zh-Hans\Extension.vsixlangpack">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\MoeIDEPackage.ico" />
     <Content Include="Themes\Blue.pkgdef">
       <IncludeInVSIX>true</IncludeInVSIX>
