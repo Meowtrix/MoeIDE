@@ -20,6 +20,12 @@ namespace Meowtrix.MoeIDE
         public HorizontalAlignment MainBackgroundHorizontalAlignment { get; set; }
         [LocalizedCategory("201"), LocalizedDescription("206"), DisplayName(nameof(VerticalAlignment)), DefaultValue(VerticalAlignment.Center)]
         public VerticalAlignment MainBackgroundVerticalAlignment { get; set; }
+        [LocalizedCategory("201"), LocalizedDescription("208"), LocalizedDisplayName("207")]
+        public Color MainBackColor { get; set; }
+        [LocalizedCategory("201"), LocalizedDescription("210"), LocalizedDisplayName("209"), DefaultValue(1.0)]
+        public double MainOpacity { get; set; }
+        [LocalizedCategory("201"), LocalizedDescription("212"), LocalizedDisplayName("211"), DefaultValue(0.0)]
+        public double MainBlur { get; set; }
         protected override void OnActivate(CancelEventArgs e)
         {
             if (!initialized)
@@ -29,6 +35,9 @@ namespace Meowtrix.MoeIDE
                 MainBackgroundStretch = settings.MainBackground.Stretch;
                 MainBackgroundHorizontalAlignment = settings.MainBackground.HorizontalAlignment;
                 MainBackgroundVerticalAlignment = settings.MainBackground.VerticalAlignment;
+                MainBackColor = settings.MainBackground.BackColor;
+                MainOpacity = settings.MainBackground.Opacity;
+                MainBlur = settings.MainBackground.Blur;
                 initialized = true;
             }
             base.OnActivate(e);

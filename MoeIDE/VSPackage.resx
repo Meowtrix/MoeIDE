@@ -145,4 +145,22 @@
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\moeide.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="207" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="208" xml:space="preserve">
+    <value>Setting the color behind the image.</value>
+  </data>
+  <data name="209" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="210" xml:space="preserve">
+    <value>Setting opacity of the image.</value>
+  </data>
+  <data name="211" xml:space="preserve">
+    <value>Blue radius</value>
+  </data>
+  <data name="212" xml:space="preserve">
+    <value>Setting radius of blur effect applied on the image. 0 means no blur.</value>
+  </data>
 </root>

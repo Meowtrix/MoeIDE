@@ -15,6 +15,9 @@ namespace Meowtrix.MoeIDE
             public Stretch Stretch { get; set; } = Stretch.UniformToFill;
             public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Center;
             public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Center;
+            public Color BackColor { get; set; } = Colors.Transparent;
+            public double Opacity { get; set; } = 1.0;
+            public double Blur { get; set; } = 0.0;
         }
         public ImageInfo MainBackground { get; set; }
         public SettingsModel() { }
@@ -25,7 +28,10 @@ namespace Meowtrix.MoeIDE
                 Filename = settings.MainBackgroundFilename,
                 Stretch = settings.MainBackgroundStretch,
                 HorizontalAlignment = settings.MainBackgroundHorizontalAlignment,
-                VerticalAlignment = settings.MainBackgroundVerticalAlignment
+                VerticalAlignment = settings.MainBackgroundVerticalAlignment,
+                BackColor = settings.MainBackColor,
+                Opacity = settings.MainOpacity,
+                Blur = settings.MainBlur
             };
         }
     }
