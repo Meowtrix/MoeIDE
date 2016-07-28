@@ -43,7 +43,7 @@ namespace Meowtrix.MoeIDE
 
         static MoeIDEPackage()
         {
-            var resman = new ResourceManager("VSPackage", typeof(MoeIDEPackage).Assembly);
+            var resman = new ResourceManager("Meowtrix.MoeIDE.VSPackage", typeof(MoeIDEPackage).Assembly);
             LocalizedCategoryAttribute.resources = resman;
             LocalizedDisplayNameAttribute.resources = resman;
             LocalizedDescriptionAttribute.resources = resman;

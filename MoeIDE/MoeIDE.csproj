@@ -77,14 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\MoeIDE.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Resources\preview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="zh-cn\Extension.vsixlangpack">
+    <Content Include="zh-CN\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Themes\Blue.pkgdef">
@@ -232,7 +230,7 @@
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
-    <EmbeddedResource Include="VSPackage.zh-cn.resx">
+    <EmbeddedResource Include="VSPackage.zh-CN.resx">
       <DependentUpon>VSPackage.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
