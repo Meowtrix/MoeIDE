@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
 namespace Meowtrix.MoeIDE
@@ -25,6 +27,14 @@ namespace Meowtrix.MoeIDE
                 imagecontrol.Stretch = newSettings.MainBackground.Stretch;
                 imagecontrol.HorizontalAlignment = newSettings.MainBackground.HorizontalAlignment;
                 imagecontrol.VerticalAlignment = newSettings.MainBackground.VerticalAlignment;
+                var br = new SolidColorBrush(newSettings.MainBackground.BackColor);
+                br.Freeze();
+                Application.Current.MainWindow.Background = br;
+                imagecontrol.Opacity = newSettings.MainBackground.Opacity;
+                double blur = newSettings.MainBackground.Blur;
+                if (blur == 0.0)
+                    imagecontrol.Effect = null;
+                else imagecontrol.Effect = new BlurEffect { Radius = blur };
             }
             catch
             {
