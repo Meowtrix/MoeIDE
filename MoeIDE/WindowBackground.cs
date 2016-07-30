@@ -9,6 +9,7 @@ namespace Meowtrix.MoeIDE
 {
     public class WindowBackground
     {
+        private readonly Border parentBorder = new Border();
         private readonly Image imagecontrol = new Image();
         public WindowBackground(Window window)
         {
@@ -46,9 +47,13 @@ namespace Meowtrix.MoeIDE
         {
             var mainwindow = (Window)sender;
 
-            Grid.SetRowSpan(imagecontrol, 4);
+            parentBorder.Child = imagecontrol;
+            var cache = new BitmapCache { SnapsToDevicePixels = true };
+            cache.Freeze();
+            parentBorder.CacheMode = cache;
+            Grid.SetRowSpan(parentBorder, 4);
             var rootgrid = (Grid)mainwindow.Template.FindName("RootGrid", mainwindow);
-            rootgrid.Children.Insert(0, imagecontrol);
+            rootgrid.Children.Insert(0, parentBorder);
         }
     }
 }
