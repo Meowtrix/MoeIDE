@@ -18,21 +18,12 @@ namespace Meowtrix.MoeIDE
             public Color BackColor { get; set; } = Colors.Transparent;
             public double Opacity { get; set; } = 1.0;
             public double Blur { get; set; } = 0.0;
+            public ImageInfo Clone() => (ImageInfo)MemberwiseClone();
         }
         public ImageInfo MainBackground { get; set; }
-        public SettingsModel() { }
-        public SettingsModel(Settings settings)
+        public SettingsModel Clone() => new SettingsModel
         {
-            MainBackground = new ImageInfo
-            {
-                Filename = settings.MainBackgroundFilename,
-                Stretch = settings.MainBackgroundStretch,
-                HorizontalAlignment = settings.MainBackgroundHorizontalAlignment,
-                VerticalAlignment = settings.MainBackgroundVerticalAlignment,
-                BackColor = settings.MainBackColor,
-                Opacity = settings.MainOpacity,
-                Blur = settings.MainBlur
-            };
-        }
+            MainBackground = this.MainBackground.Clone()
+        };
     }
 }
