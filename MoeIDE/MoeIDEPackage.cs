@@ -25,7 +25,7 @@ namespace Meowtrix.MoeIDE
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.2", IconResourceID = 400)] // Info on this package for Help/About
+    [InstalledProductRegistration("#110", "#112", "1.3", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
     [ProvideOptionPage(typeof(Settings), nameof(MoeIDE), "General", 0, 0, true)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
