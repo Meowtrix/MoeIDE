@@ -15,11 +15,20 @@ namespace Meowtrix.MoeIDE
         private const string filename = "userconfig.xml";
         static SettingsManager()
         {
-            watcher = new FileSystemWatcher(configFolder, filename);
-            watcher.Changed += Watcher_Changed;
-            watcher.Renamed += Watcher_Changed;
-            watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;
-            watcher.EnableRaisingEvents = true;
+            if (!File.Exists(Path.Combine(configFolder, filename)))
+                SaveSettings(CurrentSettings);
+            try
+            {
+                watcher = new FileSystemWatcher(configFolder, filename);
+                watcher.Changed += Watcher_Changed;
+                watcher.Renamed += Watcher_Changed;
+                watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;
+                watcher.EnableRaisingEvents = true;
+            }
+            catch
+            {
+                //TODO:output
+            }
         }
 
         private static void Watcher_Changed(object sender, FileSystemEventArgs e)
