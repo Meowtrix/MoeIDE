@@ -130,33 +130,21 @@
     <value>文件名</value>
   </data>
   <data name="203" xml:space="preserve">
-    <value>选择用作背景的图像。</value>
+    <value>拉伸方式</value>
   </data>
   <data name="204" xml:space="preserve">
-    <value>设置图片的拉伸方式。</value>
+    <value>水平对齐</value>
   </data>
   <data name="205" xml:space="preserve">
-    <value>设置图片的水平对齐方式。</value>
+    <value>垂直对齐</value>
   </data>
   <data name="206" xml:space="preserve">
-    <value>设置图片的垂直对齐方式。</value>
-  </data>
-  <data name="207" xml:space="preserve">
     <value>背景颜色</value>
   </data>
-  <data name="208" xml:space="preserve">
-    <value>设置图片背后所显示的颜色。</value>
-  </data>
-  <data name="209" xml:space="preserve">
+  <data name="207" xml:space="preserve">
     <value>浓度</value>
   </data>
-  <data name="210" xml:space="preserve">
-    <value>设置图片的浓度。</value>
-  </data>
-  <data name="211" xml:space="preserve">
+  <data name="208" xml:space="preserve">
     <value>模糊半径</value>
-  </data>
-  <data name="212" xml:space="preserve">
-    <value>设置对图片应用模糊化效果的半径。0为不模糊化。</value>
   </data>
 </root>

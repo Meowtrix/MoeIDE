@@ -22,7 +22,7 @@
                 <Setter Property="Margin" Value="4"/>
             </Style>
         </Grid.Resources>
-        <GroupBox Grid.Row="0" Header="Main Background">
+        <GroupBox Grid.Row="0" Header="{local:Localized 201}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -39,23 +39,23 @@
                     <RowDefinition Height="Auto" SharedSizeGroup="Row"/>
                     <RowDefinition Height="Auto" SharedSizeGroup="Row"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Filename"/>
+                <TextBlock Grid.Row="0" Text="{local:Localized 202}"/>
                 <meowtrix:FilePicker Grid.Row="0" Grid.Column="1"
                                      Margin="4"
                                      Filename="{Binding MainBackground.Filename, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="1" Text="Stretch"/>
+                <TextBlock Grid.Row="1" Text="{local:Localized 203}"/>
                 <meowtrix:EnumComboBox Grid.Row="1" Grid.Column="1"
                                        EnumType="{x:Type Stretch}"
                                        SelectedValue="{Binding MainBackground.Stretch, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="2" Text="HorizontalAlignment"/>
+                <TextBlock Grid.Row="2" Text="{local:Localized 204}"/>
                 <meowtrix:EnumComboBox Grid.Row="2" Grid.Column="1"
                                        EnumType="{x:Type HorizontalAlignment}"
                                        SelectedValue="{Binding MainBackground.HorizontalAlignment, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="3" Text="VerticalAlignment"/>
+                <TextBlock Grid.Row="3" Text="{local:Localized 205}"/>
                 <meowtrix:EnumComboBox Grid.Row="3" Grid.Column="1"
                                        EnumType="{x:Type VerticalAlignment}"
                                        SelectedValue="{Binding MainBackground.VerticalAlignment, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="4" Text="BackColor"/>
+                <TextBlock Grid.Row="4" Text="{local:Localized 206}"/>
                 <TextBox x:Name="textColor"
                          Grid.Row="4" Grid.Column="1"
                          Margin="4"
@@ -73,11 +73,11 @@
                             Click="DefaultColor" Content="Blue"
                             Tag="#FF293955"/>
                 </StackPanel>
-                <TextBlock Grid.Row="6" Text="Opacity"/>
+                <TextBlock Grid.Row="6" Text="{local:Localized 207}"/>
                 <Slider Grid.Row="6" Grid.Column="1"
                         Maximum="1" Minimum="0"
                         Value="{Binding MainBackground.Opacity, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="7" Text="Blur Radius"/>
+                <TextBlock Grid.Row="7" Text="{local:Localized 208}"/>
                 <TextBox Grid.Row="7" Grid.Column="1"
                          Margin="4"
                          Text="{Binding MainBackground.Blur, Mode=TwoWay}"/>
