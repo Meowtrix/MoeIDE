@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Meowtrix.MoeIDE
 {
@@ -10,6 +11,13 @@ namespace Meowtrix.MoeIDE
         public SettingsPage()
         {
             InitializeComponent();
+        }
+
+        private void DefaultColor(object sender, RoutedEventArgs e)
+        {
+            var exp = textColor.GetBindingExpression(TextBox.TextProperty);
+            textColor.Text = (sender as Control).Tag.ToString();
+            exp.UpdateSource();
         }
     }
 }
