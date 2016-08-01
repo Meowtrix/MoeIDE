@@ -26,7 +26,9 @@ namespace Meowtrix.MoeIDE
         }
         protected override void OnApply(PageApplyEventArgs e)
         {
-            SettingsManager.SaveSettings(Model);
+            page.Focus();
+            if (e.ApplyBehavior == ApplyKind.Apply)
+                SettingsManager.SaveSettings(Model);
         }
     }
 }
