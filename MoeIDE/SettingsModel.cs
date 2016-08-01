@@ -20,7 +20,7 @@ namespace Meowtrix.MoeIDE
             public double Blur { get; set; } = 0.0;
             public ImageInfo Clone() => (ImageInfo)MemberwiseClone();
         }
-        public ImageInfo MainBackground { get; set; }
+        public ImageInfo MainBackground { get; set; } = new ImageInfo();
         public SettingsModel Clone() => new SettingsModel
         {
             MainBackground = this.MainBackground.Clone()
