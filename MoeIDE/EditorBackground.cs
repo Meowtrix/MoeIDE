@@ -4,6 +4,8 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Text.Editor;
+using Meowtrix.WPF.Extend;
+using System.Linq;
 
 namespace Meowtrix.MoeIDE
 {
@@ -36,17 +38,17 @@ namespace Meowtrix.MoeIDE
 
         private void TextView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (parentGrid == null) parentGrid = (Grid)control.Parent;
-            if (viewStack == null) viewStack = (Canvas)control.Content;
-            if (leftMargin == null) leftMargin = (Grid)(parentGrid.Children[1] as Panel).Children[0];
+            if (parentGrid == null) parentGrid = control.Parent as Grid;
+            if (viewStack == null) viewStack = control.Content as Canvas;
+            if (leftMargin == null) leftMargin = parentGrid.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Grid;
             MakeBackgroundTransparent();
         }
 
         private void MakeBackgroundTransparent()
         {
-            viewStack.Background = new VisualBrush(parentGrid);
-            leftMargin.Background = Brushes.Transparent;
-            parentGrid.ClearValue(Panel.BackgroundProperty);
+            if (parentGrid != null) parentGrid.ClearValue(Panel.BackgroundProperty);
+            if (viewStack != null) viewStack.Background = new VisualBrush(parentGrid);
+            if (leftMargin != null) leftMargin.Background = Brushes.Transparent;
         }
     }
 }
