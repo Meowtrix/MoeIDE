@@ -109,12 +109,12 @@
     <Reference Include="EnvDTE90, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Meowtrix.UniversalClassLibrary.1.2.0\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
+    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.1.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
+      <HintPath>..\packages\Meowtrix.UniversalClassLibrary.1.2.1\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Meowtrix.WPF.Extend, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Meowtrix.WPF.Extend.1.3.0\lib\net46\Meowtrix.WPF.Extend.dll</HintPath>
+    <Reference Include="Meowtrix.WPF.Extend, Version=1.3.1.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
+      <HintPath>..\packages\Meowtrix.WPF.Extend.1.3.1\lib\net46\Meowtrix.WPF.Extend.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
