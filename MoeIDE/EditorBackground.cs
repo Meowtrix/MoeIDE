@@ -40,7 +40,7 @@ namespace Meowtrix.MoeIDE
         {
             if (parentGrid == null) parentGrid = control.Parent as Grid;
             if (viewStack == null) viewStack = control.Content as Canvas;
-            if (leftMargin == null) leftMargin = parentGrid.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Grid;
+            if (leftMargin == null) leftMargin = (parentGrid.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Grid)?.Children[0] as Grid;
             MakeBackgroundTransparent();
         }
 
