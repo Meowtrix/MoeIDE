@@ -76,7 +76,11 @@
                 <TextBlock Grid.Row="6" Text="{local:Localized 207}"/>
                 <Slider Grid.Row="6" Grid.Column="1"
                         Maximum="1" Minimum="0"
-                        Value="{Binding MainBackground.Opacity, Mode=TwoWay}"/>
+                        Value="{Binding MainBackground.Opacity, Mode=TwoWay}">
+                    <Slider.ToolTip>
+                        <TextBlock Text="{Binding MainBackground.Opacity, Mode=OneWay, StringFormat={}{0:P0}}"/>
+                    </Slider.ToolTip>
+                </Slider>
                 <TextBlock Grid.Row="7" Text="{local:Localized 208}"/>
                 <TextBox Grid.Row="7" Grid.Column="1"
                          Margin="4"
