@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VsixLanguagePack Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema-lp/2010">
   <LocalizedName>MoeIDE</LocalizedName>
-  <LocalizedDescription>为IDE提供背景图片，包含预定义的透明主题。已解决花屏问题。</LocalizedDescription>
+  <LocalizedDescription>为IDE提供背景图片，包含预定义的透明主题。</LocalizedDescription>
   <MoreInfoUrl>https://github.com/Meowtrix/MoeIDE</MoreInfoUrl>
 </VsixLanguagePack>
