@@ -30,7 +30,7 @@ namespace Meowtrix.MoeIDE
                 imagecontrol.VerticalAlignment = newSettings.MainBackground.VerticalAlignment;
                 var br = new SolidColorBrush(newSettings.MainBackground.BackColor);
                 br.Freeze();
-                Application.Current.MainWindow.Background = br;
+                parentBorder.Background = br;
                 imagecontrol.Opacity = newSettings.MainBackground.Opacity;
                 double blur = newSettings.MainBackground.Blur;
                 if (blur == 0.0)

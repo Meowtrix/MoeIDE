@@ -7,6 +7,8 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Meowtrix.WPF.Extend;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 
 namespace Meowtrix.MoeIDE
@@ -55,9 +57,17 @@ namespace Meowtrix.MoeIDE
                 if (hostRootVisual?.GetType().Name == "WpfMultiViewHost")//xaml editor
                 {
                     source.AddHook(WndHook);
+
+                    var containerBorder = new Border();
+                    source.RootVisual = containerBorder;
+                    containerBorder.Child = hostRootVisual;
+
+                    VSColorTheme.ThemeChanged += SetSolidBrush;
+                    SetSolidBrush(null);
+
                     var mainWindow = Application.Current.MainWindow;
                     hostVisualBrush = new VisualBrush(((Grid)mainWindow.Template.FindName("RootGrid", mainWindow)).Children[0]);
-                    hostRootVisual.Background = hostVisualBrush;
+                    containerBorder.Background = hostVisualBrush;
                     WeakEventManager<Window, SizeChangedEventArgs>
                         .AddHandler(mainWindow, nameof(Window.SizeChanged), (_, __) => SetVisualBrush());
                 }
@@ -79,6 +89,15 @@ namespace Meowtrix.MoeIDE
                 SetVisualBrush();
             }
             return IntPtr.Zero;
+        }
+
+        private void SetSolidBrush(ThemeChangedEventArgs e)
+        {
+            var uiShell = Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell6;
+            var color = uiShell.GetThemedWPFColor(EnvironmentColors.SystemWindowColorKey);
+            var brush = new SolidColorBrush(color);
+            brush.Freeze();
+            hostRootVisual.Background = brush;
         }
 
         private void SetVisualBrush()
