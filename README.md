@@ -18,3 +18,7 @@ To customize the image, see Options->MoeIDE.
 After installing the extension, go to Options->Environment->Color Theme, and select Light Transparent, Dark Transparent or Blue Transparent to apply the embedded theme.
 
 To customize colors, see [Color Theme Editor](https://visualstudiogallery.msdn.microsoft.com/6f4b51b6-5c6b-4a81-9cb5-f2daa56043b).
+
+## Debug
+
+To debug a Visual Studio Extension, use `C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe` and `/rootSuffix Exp` in Debug page of project properties.
