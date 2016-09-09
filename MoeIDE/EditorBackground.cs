@@ -27,6 +27,7 @@ namespace Meowtrix.MoeIDE
         private Grid parentGrid;
         private Canvas viewStack;
         private Grid leftMargin;
+        private VisualBrush viewStackBrush;
 
         private RECT hostRect;
         private Panel hostRootVisual;
@@ -40,21 +41,19 @@ namespace Meowtrix.MoeIDE
         {
             this.view = view;
             control = (ContentControl)view;
-            VSColorTheme.ThemeChanged += ThemeChanged;
             control.Loaded += TextView_Loaded;
+            view.BackgroundBrushChanged += TextView_BackgroundChanged;
             view.Closed += TextView_Closed;
         }
 
-        private void ThemeChanged(ThemeChangedEventArgs e)
-        {
-            control.Dispatcher.Invoke(MakeBackgroundTransparent, DispatcherPriority.Render);
-        }
+        private void TextView_BackgroundChanged(object sender, BackgroundBrushChangedEventArgs e)
+            => control.Dispatcher.InvokeAsync(MakeBackgroundTransparent, DispatcherPriority.Render);
 
         private void TextView_Closed(object sender, EventArgs e)
         {
-            VSColorTheme.ThemeChanged -= ThemeChanged;
             VSColorTheme.ThemeChanged -= SetSolidBrush;
             Application.Current.MainWindow.SizeChanged -= SetVisualBrush;
+            view.BackgroundBrushChanged -= TextView_BackgroundChanged;
             view.Closed -= TextView_Closed;
         }
 
@@ -84,8 +83,14 @@ namespace Meowtrix.MoeIDE
                     containerBorder.Background = hostVisualBrush;
                     mainWindow.SizeChanged += SetVisualBrush;
                 }
+                else
+                {
+                    view.BackgroundBrushChanged -= TextView_BackgroundChanged;
+                    return;
+                }
             }
 
+            viewStackBrush = new VisualBrush(parentGrid);
             MakeBackgroundTransparent();
         }
 
@@ -129,8 +134,8 @@ namespace Meowtrix.MoeIDE
         private void MakeBackgroundTransparent()
         {
             if (parentGrid != null) parentGrid.ClearValue(Panel.BackgroundProperty);
-            if (viewStack != null) viewStack.Background = new VisualBrush(parentGrid);
-            if (leftMargin != null) leftMargin.Background = Brushes.Transparent;
+            if (viewStack != null) viewStack.Background = viewStackBrush;
+            if (leftMargin != null) leftMargin.ClearValue(Panel.BackgroundProperty);
         }
     }
 }
