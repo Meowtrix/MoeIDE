@@ -40,8 +40,22 @@ namespace Meowtrix.MoeIDE
         {
             this.view = view;
             control = (ContentControl)view;
-            VSColorTheme.ThemeChanged += _ => control.Dispatcher.Invoke(MakeBackgroundTransparent, DispatcherPriority.Render);
+            VSColorTheme.ThemeChanged += ThemeChanged;
             control.Loaded += TextView_Loaded;
+            view.Closed += TextView_Closed;
+        }
+
+        private void ThemeChanged(ThemeChangedEventArgs e)
+        {
+            control.Dispatcher.Invoke(MakeBackgroundTransparent, DispatcherPriority.Render);
+        }
+
+        private void TextView_Closed(object sender, EventArgs e)
+        {
+            VSColorTheme.ThemeChanged -= ThemeChanged;
+            VSColorTheme.ThemeChanged -= SetSolidBrush;
+            Application.Current.MainWindow.SizeChanged -= SetVisualBrush;
+            view.Closed -= TextView_Closed;
         }
 
         private void TextView_Loaded(object sender, RoutedEventArgs e)
@@ -68,8 +82,7 @@ namespace Meowtrix.MoeIDE
                     var mainWindow = Application.Current.MainWindow;
                     hostVisualBrush = new VisualBrush(((Grid)mainWindow.Template.FindName("RootGrid", mainWindow)).Children[0]);
                     containerBorder.Background = hostVisualBrush;
-                    WeakEventManager<Window, SizeChangedEventArgs>
-                        .AddHandler(mainWindow, nameof(Window.SizeChanged), (_, __) => SetVisualBrush());
+                    mainWindow.SizeChanged += SetVisualBrush;
                 }
             }
 
@@ -86,7 +99,7 @@ namespace Meowtrix.MoeIDE
                 hostRect.Bottom != rect.Bottom)
             {
                 hostRect = rect;
-                SetVisualBrush();
+                SetVisualBrush(null, null);
             }
             return IntPtr.Zero;
         }
@@ -100,7 +113,7 @@ namespace Meowtrix.MoeIDE
             hostRootVisual.Background = brush;
         }
 
-        private void SetVisualBrush()
+        private void SetVisualBrush(object sender, SizeChangedEventArgs e)
         {
             RECT mainRect;
             NativeMethods.GetWindowRect(((HwndSource)PresentationSource.FromVisual(Application.Current.MainWindow)).Handle,
