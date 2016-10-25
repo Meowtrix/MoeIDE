@@ -250,7 +250,7 @@
   <ItemGroup>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <!--<ManifestResourceName>VSPackage</ManifestResourceName>-->
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.zh-CN.resx">
       <DependentUpon>VSPackage.resx</DependentUpon>
