@@ -63,6 +63,7 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VersionInfo.cs" />
     <Compile Include="WindowBackground.cs" />
     <Compile Include="MoeIDEPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
