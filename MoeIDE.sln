@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeIDE", "MoeIDE\MoeIDE.csproj", "{BD08BC79-86F7-4EDB-B36E-97B992F65FFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meowtrix.WPF.Extend", "Xaml.Extend\Meowtrix.WPF.Extend\Meowtrix.WPF.Extend.csproj", "{15CACAC9-9E3C-4056-A26D-B4B9CD7FE596}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BD08BC79-86F7-4EDB-B36E-97B992F65FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD08BC79-86F7-4EDB-B36E-97B992F65FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD08BC79-86F7-4EDB-B36E-97B992F65FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15CACAC9-9E3C-4056-A26D-B4B9CD7FE596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CACAC9-9E3C-4056-A26D-B4B9CD7FE596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CACAC9-9E3C-4056-A26D-B4B9CD7FE596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CACAC9-9E3C-4056-A26D-B4B9CD7FE596}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
