@@ -123,6 +123,9 @@
   <data name="112" xml:space="preserve">
     <value>为IDE提供背景图片。</value>
   </data>
+  <data name="200" xml:space="preserve">
+    <value>※请在环境-&gt;常规-&gt;颜色主题中选择附带的一款Transparent主题以获得最佳效果。</value>
+  </data>
   <data name="201" xml:space="preserve">
     <value>主窗口背景</value>
   </data>

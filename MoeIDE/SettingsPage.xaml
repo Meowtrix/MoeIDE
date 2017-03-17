@@ -9,11 +9,8 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Focusable="True"
              mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.Resources>
+    <StackPanel Orientation="Vertical">
+        <StackPanel.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="4"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -21,7 +18,7 @@
             <Style TargetType="meowtrix:EnumComboBox">
                 <Setter Property="Margin" Value="4"/>
             </Style>
-        </Grid.Resources>
+        </StackPanel.Resources>
         <GroupBox Grid.Row="0" Header="{local:Localized 201}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -87,5 +84,6 @@
                          Text="{Binding MainBackground.Blur, Mode=TwoWay}"/>
             </Grid>
         </GroupBox>
-    </Grid>
+        <TextBlock Margin="4" Text="{local:Localized 200}"/>
+    </StackPanel>
 </UserControl>
