@@ -24,7 +24,7 @@ namespace Meowtrix.MoeIDE
         private readonly IWpfTextView view;
 
         private ContentControl control;
-        private Grid parentGrid;
+        private Panel parentGrid;
         private Canvas viewStack;
         private Grid leftMargin;
         private VisualBrush viewStackBrush;
@@ -59,9 +59,9 @@ namespace Meowtrix.MoeIDE
 
         private void TextView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (parentGrid == null) parentGrid = control.Parent as Grid;
+            if (parentGrid == null) parentGrid = control.Parent as Panel;
             if (viewStack == null) viewStack = control.Content as Canvas;
-            if (leftMargin == null) leftMargin = (parentGrid.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Grid)?.Children[0] as Grid;
+            if (leftMargin == null) leftMargin = (parentGrid?.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Panel)?.Children[0] as Grid;
 
             if (!control.IsDescendantOf(Application.Current.MainWindow))
             {
