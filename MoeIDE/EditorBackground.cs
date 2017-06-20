@@ -96,8 +96,7 @@ namespace Meowtrix.MoeIDE
 
         private IntPtr WndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            RECT rect;
-            NativeMethods.GetWindowRect(hwnd, out rect);
+            NativeMethods.GetWindowRect(hwnd, out RECT rect);
             if (hostRect.Left != rect.Left ||
                 hostRect.Right != rect.Right ||
                 hostRect.Top != rect.Top ||
@@ -120,9 +119,8 @@ namespace Meowtrix.MoeIDE
 
         private void SetVisualBrush(object sender, SizeChangedEventArgs e)
         {
-            RECT mainRect;
             NativeMethods.GetWindowRect(((HwndSource)PresentationSource.FromVisual(Application.Current.MainWindow)).Handle,
-                out mainRect);
+                out RECT mainRect);
             double x = (hostRect.Left - mainRect.Left) / (double)mainRect.Width,
                 y = (hostRect.Top - mainRect.Top) / (double)mainRect.Height,
                 width = hostRect.Width / (double)mainRect.Width,
