@@ -4,8 +4,7 @@ This extension allows you to pick a background image for the whole Visual Studi
 
 Available on [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=vs-publisher-593793.MoeIDE).
 
-Supported version: Visual Studio 2015, 2017, 2019 (or above if no breaking changes)
-
+Supported version: Visual Studio 2015 and above
 ## Preview
 
 ![Preview1](MoeIDE/Resources/preview.png)
