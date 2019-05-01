@@ -55,6 +55,7 @@ namespace Meowtrix.MoeIDE
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) 
         {
             await base.InitializeAsync(cancellationToken, progress);
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
             mainBackground = new WindowBackground(Application.Current.MainWindow);
             SettingsManager.LoadSettings();
         }
