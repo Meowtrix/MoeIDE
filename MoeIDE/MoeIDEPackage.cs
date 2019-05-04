@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -24,14 +25,14 @@ namespace Meowtrix.MoeIDE
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", __Version.Version, IconResourceID = 400)] // Info on this package for Help/About
     [Guid(PackageGuidString)]
     [ProvideOptionPage(typeof(Settings), nameof(MoeIDE), "General", 0, 0, true)]
-    [ProvideAutoLoad(UIContextGuids.NoSolution)]
-    [ProvideAutoLoad(UIContextGuids.SolutionExists)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideBindingPath]
-    public sealed class MoeIDEPackage : Package
+    public sealed class MoeIDEPackage : AsyncPackage
     {
         /// <summary>
         /// MoeIDEPackage GUID string.
@@ -51,9 +52,10 @@ namespace Meowtrix.MoeIDE
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
         /// </summary>
-        protected override void Initialize()
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) 
         {
-            base.Initialize();
+            await base.InitializeAsync(cancellationToken, progress);
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
             mainBackground = new WindowBackground(Application.Current.MainWindow);
             SettingsManager.LoadSettings();
         }
