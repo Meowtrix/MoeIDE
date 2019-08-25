@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Meowtrix.MoeIDE"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:meowtrix="urn:meowtrix"
              d:DataContext="{d:DesignInstance local:SettingsModel}"
              d:DesignHeight="300" d:DesignWidth="300"
              Focusable="True"
@@ -15,7 +14,7 @@
                 <Setter Property="Margin" Value="4"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
-            <Style TargetType="meowtrix:EnumComboBox">
+            <Style TargetType="local:EnumComboBox">
                 <Setter Property="Margin" Value="4"/>
             </Style>
         </StackPanel.Resources>
@@ -37,19 +36,19 @@
                     <RowDefinition Height="Auto" SharedSizeGroup="Row"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="{local:Localized 202}"/>
-                <meowtrix:FilePicker Grid.Row="0" Grid.Column="1"
+                <local:FilePicker Grid.Row="0" Grid.Column="1"
                                      Margin="4"
                                      Filename="{Binding MainBackground.Filename, Mode=TwoWay}"/>
                 <TextBlock Grid.Row="1" Text="{local:Localized 203}"/>
-                <meowtrix:EnumComboBox Grid.Row="1" Grid.Column="1"
+                <local:EnumComboBox Grid.Row="1" Grid.Column="1"
                                        EnumType="{x:Type Stretch}"
                                        SelectedValue="{Binding MainBackground.Stretch, Mode=TwoWay}"/>
                 <TextBlock Grid.Row="2" Text="{local:Localized 204}"/>
-                <meowtrix:EnumComboBox Grid.Row="2" Grid.Column="1"
+                <local:EnumComboBox Grid.Row="2" Grid.Column="1"
                                        EnumType="{x:Type HorizontalAlignment}"
                                        SelectedValue="{Binding MainBackground.HorizontalAlignment, Mode=TwoWay}"/>
                 <TextBlock Grid.Row="3" Text="{local:Localized 205}"/>
-                <meowtrix:EnumComboBox Grid.Row="3" Grid.Column="1"
+                <local:EnumComboBox Grid.Row="3" Grid.Column="1"
                                        EnumType="{x:Type VerticalAlignment}"
                                        SelectedValue="{Binding MainBackground.VerticalAlignment, Mode=TwoWay}"/>
                 <TextBlock Grid.Row="4" Text="{local:Localized 206}"/>

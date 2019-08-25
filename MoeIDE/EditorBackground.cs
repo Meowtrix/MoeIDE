@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Meowtrix.WPF.Extend;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -49,6 +49,22 @@ namespace Meowtrix.MoeIDE
         private void TextView_BackgroundChanged(object sender, BackgroundBrushChangedEventArgs e)
             => control.Dispatcher.InvokeAsync(MakeBackgroundTransparent, DispatcherPriority.Render);
 
+        private static IEnumerable<DependencyObject> BFS(DependencyObject root)
+        {
+            if (root == null) yield break;
+
+            Queue<DependencyObject> queue = new Queue<DependencyObject>();
+            queue.Enqueue(root);
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                int childrenCount = VisualTreeHelper.GetChildrenCount(current);
+                yield return current;
+                for (int i = 0; i < childrenCount; i++)
+                    queue.Enqueue(VisualTreeHelper.GetChild(current, i));
+            }
+        }
+
         private void TextView_Closed(object sender, EventArgs e)
         {
             VSColorTheme.ThemeChanged -= SetSolidBrush;
@@ -61,7 +77,7 @@ namespace Meowtrix.MoeIDE
         {
             if (parentGrid == null) parentGrid = control.Parent as Panel;
             if (viewStack == null) viewStack = control.Content as Canvas;
-            if (leftMargin == null) leftMargin = (parentGrid?.BFS().FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Panel)?.Children[0] as Grid;
+            if (leftMargin == null) leftMargin = (BFS(parentGrid).FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Panel)?.Children[0] as Grid;
 
             if (!control.IsDescendantOf(Application.Current.MainWindow))
             {
