@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Threading;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -23,7 +22,7 @@ namespace Meowtrix.MoeIDE
         /// </summary>
         private readonly IWpfTextView view;
 
-        private ContentControl control;
+        private readonly ContentControl control;
         private Panel parentGrid;
         private Canvas viewStack;
         private Grid leftMargin;
@@ -46,8 +45,11 @@ namespace Meowtrix.MoeIDE
             view.Closed += TextView_Closed;
         }
 
-        private void TextView_BackgroundChanged(object sender, BackgroundBrushChangedEventArgs e)
-            => control.Dispatcher.InvokeAsync(MakeBackgroundTransparent, DispatcherPriority.Render);
+        private async void TextView_BackgroundChanged(object sender, BackgroundBrushChangedEventArgs e)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            MakeBackgroundTransparent();
+        }
 
         private static IEnumerable<DependencyObject> BFS(DependencyObject root)
         {
@@ -75,6 +77,8 @@ namespace Meowtrix.MoeIDE
 
         private void TextView_Loaded(object sender, RoutedEventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (parentGrid == null) parentGrid = control.Parent as Panel;
             if (viewStack == null) viewStack = control.Content as Canvas;
             if (leftMargin == null) leftMargin = (BFS(parentGrid).FirstOrDefault(x => x.GetType().Name == "LeftMargin") as Panel)?.Children[0] as Grid;
@@ -126,7 +130,8 @@ namespace Meowtrix.MoeIDE
 
         private void SetSolidBrush(ThemeChangedEventArgs e)
         {
-            var uiShell = Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell6;
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var uiShell = Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell5;
             var color = uiShell.GetThemedWPFColor(EnvironmentColors.SystemWindowColorKey);
             var brush = new SolidColorBrush(color);
             brush.Freeze();

@@ -9,7 +9,7 @@ namespace Meowtrix.MoeIDE
     internal static class SettingsManager
     {
         public static SettingsModel CurrentSettings { get; private set; } = new SettingsModel();
-        public static event SettingsUpdatedHandler SettingsUpdated = delegate { };
+        public static event SettingsUpdatedHandler SettingsUpdated;
         private static readonly string configFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), nameof(Meowtrix), nameof(MoeIDE));
         private static readonly FileSystemWatcher watcher;
         private const string filename = "userconfig.xml";
@@ -45,7 +45,7 @@ namespace Meowtrix.MoeIDE
                 var serialzer = new XmlSerializer(typeof(SettingsModel));
                 using (var stream = File.OpenRead(Path.Combine(configFolder, filename)))
                     settings = (SettingsModel)serialzer.Deserialize(stream);
-                SettingsUpdated(CurrentSettings, settings);
+                SettingsUpdated?.Invoke(CurrentSettings, settings);
                 CurrentSettings = settings;
             }
             catch
@@ -62,7 +62,7 @@ namespace Meowtrix.MoeIDE
                 Directory.CreateDirectory(configFolder);
                 using (var stream = File.Create(Path.Combine(configFolder, filename)))
                     serialzer.Serialize(stream, settings);
-                SettingsUpdated(CurrentSettings, settings);
+                SettingsUpdated?.Invoke(CurrentSettings, settings);
                 CurrentSettings = settings;
             }
             catch

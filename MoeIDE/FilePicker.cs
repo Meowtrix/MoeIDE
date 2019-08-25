@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
+[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+
 namespace Meowtrix.MoeIDE
 {
     public enum FilePickerType { OpenFile, SaveFile, Folder }
@@ -77,8 +79,7 @@ namespace Meowtrix.MoeIDE
             {
                 var old = Filename;
                 Filename = dialog.FileName;
-                var temp = FilenameChanged;
-                temp?.Invoke(this, new PropertyChangedEventArgs<string>(old, Filename));
+                FilenameChanged?.Invoke(this, new PropertyChangedEventArgs<string>(old, Filename));
             }
             dialog.Dispose();
         }

@@ -47,16 +47,15 @@ namespace Meowtrix.MoeIDE
 
         #region Package Members
 
-        private WindowBackground mainBackground;
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
         /// </summary>
-        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) 
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
             await JoinableTaskFactory.SwitchToMainThreadAsync();
-            mainBackground = new WindowBackground(Application.Current.MainWindow);
+            _ = new WindowBackground(Application.Current.MainWindow);
             SettingsManager.LoadSettings();
         }
 

@@ -4,13 +4,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using Microsoft.VisualStudio.Shell;
 
 namespace Meowtrix.MoeIDE
 {
     public class WindowBackground
     {
-        private readonly Border parentBorder = new Border();
-        private readonly Image imagecontrol = new Image();
+        private Border parentBorder;
+        private Image imagecontrol;
         public WindowBackground(Window window)
         {
             if (window.IsLoaded) Window_Loaded(window, null);
@@ -18,8 +19,11 @@ namespace Meowtrix.MoeIDE
             SettingsManager.SettingsUpdated += SettingsUpdated;
         }
 
-        private void SettingsUpdated(SettingsModel oldSettings, SettingsModel newSettings)
+#pragma warning disable VSTHRD100
+        private async void SettingsUpdated(SettingsModel oldSettings, SettingsModel newSettings)
+#pragma warning restore
         {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             try
             {
                 var imagesource = BitmapFrame.Create(new Uri(newSettings.MainBackground.Filename), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
@@ -47,7 +51,11 @@ namespace Meowtrix.MoeIDE
         {
             var mainwindow = (Window)sender;
 
-            parentBorder.Child = imagecontrol;
+            imagecontrol = new Image();
+            parentBorder = new Border
+            {
+                Child = imagecontrol
+            };
             var cache = new BitmapCache { SnapsToDevicePixels = true };
             cache.Freeze();
             parentBorder.CacheMode = cache;
