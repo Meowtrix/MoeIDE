@@ -152,9 +152,16 @@ namespace Meowtrix.MoeIDE
 
         private void MakeBackgroundTransparent()
         {
-            if (parentGrid != null) parentGrid.ClearValue(Panel.BackgroundProperty);
-            if (viewStack != null) viewStack.Background = viewStackBrush;
-            if (leftMargin != null) leftMargin.ClearValue(Panel.BackgroundProperty);
+            try
+            {
+                if (parentGrid != null) parentGrid.ClearValue(Panel.BackgroundProperty);
+                if (viewStack != null) viewStack.Background = viewStackBrush;
+                if (leftMargin != null) leftMargin.ClearValue(Panel.BackgroundProperty);
+            }
+            catch
+            {
+                // Be defensive - view stack expects SolidColorBrush in VS16.3 and crashes
+            }
         }
     }
 }
